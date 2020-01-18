@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Play it in the console</title>
+</head>
+<body>
+    <script>
+    let computerPlay = () => {
+       play = Math.floor(Math.random()*3);
+       return play==0?"rock":play==1?"paper":"scissor";
+    }
+
+    let playRound = (playerSelection,computerSelection) => {
+        switch(playerSelection.toLowerCase()){
+            case "rock":{
+                if(computerSelection=="paper")return "You Lose! Paper beats Rock";
+                else if(computerSelection=="scissor")return "You Win! Rock beats Scissor";
+                else return "It's a tie! Rock can't beat Rock";
+            }
+            break;
+            case "paper":{
+                if(computerSelection=="paper")return "It's a tie! Paper can't beat Paper";
+                else if(computerSelection=="rock")return "You Win! Paper beats Rock";
+                else return "You Lose! Scissor beats Paper";
+            }
+            break;
+            case "scissor":{
+                if(computerSelection=="paper")return "You Win! Scissor beats Paper";
+                else if(computerSelection=="rock")return "You Lose! Rock beats Scissor";
+                else return "It's a tie! Scissor can't beat Scissor";
+            }
+        }
+    }
+
+    function game(){
+        let playerSelection;
+        let computerSelection;
+        let computerScore =0;
+        let playerScore=0;
+        for(let i=0;i<5;i++){
+            computerSelection=computerPlay();
+            playerSelection=prompt("Your play? (Rock, Paper, Scissor)");
+            console.log(`${i+1}. round: ` + playRound(playerSelection, computerSelection));
+            let outcome = playRound(playerSelection, computerSelection);
+            if(outcome.includes("Win"))playerScore++;
+            else if(outcome.includes("Lose"))computerScore++;
+        }
+        if(playerScore<computerScore)console.log("You lost the game!");
+        else if(playerScore>computerScore)console.log("You won the game!");
+        return;
+    }
+    </script>
+</body>
+</html>
