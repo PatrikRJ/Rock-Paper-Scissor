@@ -1,0 +1,1 @@
+Play a game(5 rounds) of Rock,Paper,Scissor in the console using the "game()" function.
